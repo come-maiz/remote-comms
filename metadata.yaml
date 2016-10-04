@@ -1,0 +1,8 @@
+name: remote-devel
+summary: Juju charm for my remote development machine
+maintainer: Leo Arias <Leo.Arias@briseis>
+description: |
+  This charm installs the machine I use to develop in the cloud.
+tags:
+  - misc
+
