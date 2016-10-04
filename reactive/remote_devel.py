@@ -31,21 +31,29 @@ _DOTFILES_REPO = 'https://github.com/elopio/dotfiles'
 @when_not('remote-devel.installed')
 def install_remote_devel():
     os.makedirs(os.path.join(_HOME, 'workspace'))
-    install_email()
-    install_dotfiles()
+    _install_email()
+    _install_dotfiles()
     host.chownr(
         _HOME, owner=_USERNAME, group=_USERNAME,
         follow_links=True, chowntopdir=True)
     set_state('remote-devel.installed')
 
-def install_email():
+def _install_email():
+    # imap synchronization.
+    _install_offlineimap()
+    # smtp client.
+    fetch.apt_install('msmtp')
+    # mail reader.
+    fetch.apt_install('mutt')
+
+def _install_offlineimap():
     fetch.apt_install('offlineimap')
     os.makedirs(os.path.join(_HOME, 'Mail'))
     # Run offlineimap every three minutes.
     cron = '*/3 * * * * su -u {} -c "offlineimap -u quiet"'.format(_USERNAME)
     host.write_file(os.path.join('/etc', 'cron.d', 'offlineimap'))
 
-def install_dotfiles():
+def _install_dotfiles():
     fetch.apt_install('git')
     dotfiles_workspace = os.path.join(_HOME, 'workspace', 'dotfiles')
     subprocess.check_call(['git', 'clone', _DOTFILES_REPO, dotfiles_workspace])
