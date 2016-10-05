@@ -32,6 +32,7 @@ _DOTFILES_REPO = 'https://github.com/elopio/dotfiles'
 def install_remote_devel():
     os.makedirs(os.path.join(_HOME, 'workspace'), exist_ok=True)
     _install_email()
+    _install_devtools()
     _install_dotfiles()
     host.chownr(
         _HOME, owner=_USERNAME, group=_USERNAME,
@@ -53,6 +54,9 @@ def _install_offlineimap():
     cron = '*/3 * * * * {} offlineimap -u quiet"'.format(_USERNAME).encode(
         'utf-8')
     host.write_file(os.path.join('/etc', 'cron.d', 'offlineimap'), cron)
+
+def _install_devtools():
+    fetch.apt_install('emacs-nox')
 
 def _install_dotfiles():
     fetch.apt_install('git')
