@@ -51,7 +51,7 @@ def _install_offlineimap():
     fetch.apt_install('offlineimap')
     os.makedirs(os.path.join(_HOME, 'Mail'), exist_ok=True)
     # Run offlineimap every three minutes.
-    cron = '*/3 * * * * {} offlineimap -u quiet'.format(_USERNAME).encode(
+    cron = '*/3 * * * * {} offlineimap -u quiet\n'.format(_USERNAME).encode(
         'utf-8')
     host.write_file(os.path.join('/etc', 'cron.d', 'offlineimap'), cron)
 
