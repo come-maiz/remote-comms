@@ -18,7 +18,7 @@
 import os
 import subprocess
 
-from charms.reactive import when, when_not, set_state
+from charms.reactive import when_not, set_state
 from charmhelpers import fetch
 from charmhelpers.core import host
 
@@ -39,6 +39,7 @@ def install_remote_devel():
         follow_links=True, chowntopdir=True)
     set_state('remote-devel.installed')
 
+
 def _install_email():
     # imap synchronization.
     _install_offlineimap()
@@ -46,6 +47,7 @@ def _install_email():
     fetch.apt_install('msmtp')
     # mail reader.
     fetch.apt_install('mutt')
+
 
 def _install_offlineimap():
     fetch.apt_install('offlineimap')
@@ -55,8 +57,10 @@ def _install_offlineimap():
         'utf-8')
     host.write_file(os.path.join('/etc', 'cron.d', 'offlineimap'), cron)
 
+
 def _install_devtools():
     fetch.apt_install('emacs-nox')
+
 
 def _install_dotfiles():
     fetch.apt_install('git')
