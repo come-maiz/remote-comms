@@ -47,6 +47,8 @@ def _install_email():
     fetch.apt_install('msmtp')
     # mail reader.
     fetch.apt_install('mutt')
+    # html to text.
+    fetch.apt_install('links')
 
 
 def _install_offlineimap():
