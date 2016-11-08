@@ -70,4 +70,5 @@ def _install_dotfiles():
     subprocess.check_call(['git', 'clone', _DOTFILES_REPO, dotfiles_workspace])
     subprocess.check_call(
         ['env', 'HOME=' + _HOME,
-         os.path.join(dotfiles_workspace, 'install.sh')])
+         os.path.join(dotfiles_workspace, 'install.sh'),
+         'comms'])
