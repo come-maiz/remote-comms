@@ -1,3 +1,3 @@
-# remote-devel
+# remote-comms
 
-Juju charm for my remote development machine
+Juju charm for my remote communications machine
