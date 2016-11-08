@@ -28,16 +28,16 @@ _HOME = os.path.join('/home', _USERNAME)
 _DOTFILES_REPO = 'https://github.com/elopio/dotfiles'
 
 
-@when_not('remote-devel.installed')
-def install_remote_devel():
+@when_not('remote-comms.installed')
+def install_remote_comms():
     os.makedirs(os.path.join(_HOME, 'workspace'), exist_ok=True)
     _install_email()
-    _install_devtools()
+    _install_editor()
     _install_dotfiles()
     host.chownr(
         _HOME, owner=_USERNAME, group=_USERNAME,
         follow_links=True, chowntopdir=True)
-    set_state('remote-devel.installed')
+    set_state('remote-comms.installed')
 
 
 def _install_email():
@@ -60,7 +60,7 @@ def _install_offlineimap():
     host.write_file(os.path.join('/etc', 'cron.d', 'offlineimap'), cron)
 
 
-def _install_devtools():
+def _install_editor():
     fetch.apt_install('emacs-nox')
 
 

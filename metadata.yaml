@@ -1,8 +1,8 @@
-name: remote-devel
-summary: Juju charm for my remote development machine
+name: remote-comms
+summary: Juju charm for my remote communications machine
 maintainer: Leo Arias <Leo.Arias@briseis>
 description: |
-  This charm installs the machine I use to develop in the cloud.
+  This charm installs the machine I use to communicate in the cloud.
 tags:
   - misc
 series: [xenial]
