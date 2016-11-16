@@ -32,12 +32,17 @@ _DOTFILES_REPO = 'https://github.com/elopio/dotfiles'
 def install_remote_comms():
     os.makedirs(os.path.join(_HOME, 'workspace'), exist_ok=True)
     _install_email()
+    _install_chat()
     _install_editor()
     _install_dotfiles()
     host.chownr(
         _HOME, owner=_USERNAME, group=_USERNAME,
         follow_links=True, chowntopdir=True)
     set_state('remote-comms.installed')
+
+
+def _install_chat():
+    fetch.apt_install('weechat')
 
 
 def _install_email():
