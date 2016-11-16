@@ -33,7 +33,7 @@ def install_remote_comms():
     os.makedirs(os.path.join(_HOME, 'workspace'), exist_ok=True)
     _install_email()
     _install_chat()
-    _install_editor()
+    _install_utils()
     _install_dotfiles()
     host.chownr(
         _HOME, owner=_USERNAME, group=_USERNAME,
@@ -65,8 +65,9 @@ def _install_offlineimap():
     host.write_file(os.path.join('/etc', 'cron.d', 'offlineimap'), cron)
 
 
-def _install_editor():
+def _install_utils():
     fetch.apt_install('emacs-nox')
+    fetch.apt_install('byobu')
 
 
 def _install_dotfiles():
