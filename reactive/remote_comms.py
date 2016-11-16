@@ -68,6 +68,7 @@ def _install_offlineimap():
 def _install_utils():
     fetch.apt_install('emacs-nox')
     fetch.apt_install('byobu')
+    fetch.apt_install('mosh')
 
 
 def _install_dotfiles():
