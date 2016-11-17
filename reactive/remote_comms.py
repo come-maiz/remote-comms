@@ -33,16 +33,13 @@ def install_remote_comms():
     os.makedirs(os.path.join(_HOME, 'workspace'), exist_ok=True)
     _install_email()
     _install_chat()
+    _install_social()
     _install_utils()
     _install_dotfiles()
     host.chownr(
         _HOME, owner=_USERNAME, group=_USERNAME,
         follow_links=True, chowntopdir=True)
     set_state('remote-comms.installed')
-
-
-def _install_chat():
-    fetch.apt_install('weechat')
 
 
 def _install_email():
@@ -63,6 +60,14 @@ def _install_offlineimap():
     cron = '*/3 * * * * {} offlineimap -u quiet\n'.format(_USERNAME).encode(
         'utf-8')
     host.write_file(os.path.join('/etc', 'cron.d', 'offlineimap'), cron)
+
+
+def _install_chat():
+    fetch.apt_install('weechat')
+
+
+def _install_social():
+    subprocess.check_call('pip install rainbowstream')
 
 
 def _install_utils():
