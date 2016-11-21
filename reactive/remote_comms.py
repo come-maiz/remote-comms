@@ -34,6 +34,7 @@ _DOTFILES_REPO = 'https://github.com/elopio/dotfiles'
 @when_not('remote-comms.installed')
 def install_remote_comms():
     os.makedirs(os.path.join(_HOME, 'workspace'), exist_ok=True)
+    _setup_locale()
     _install_email()
     _install_chat()
     _install_social()
@@ -43,6 +44,11 @@ def install_remote_comms():
         _HOME, owner=_USERNAME, group=_USERNAME,
         follow_links=True, chowntopdir=True)
     set_state('remote-comms.installed')
+
+
+def _setup_locale():
+    subprocess.check_call(['locale-gen', 'en_US.UTF-8'])
+    os.environ['LC_ALL'] = 'en_US.UTF-8'
 
 
 def _install_email():
