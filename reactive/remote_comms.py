@@ -67,7 +67,7 @@ def _install_chat():
 
 
 def _install_social():
-    subprocess.check_call('pip install rainbowstream')
+    subprocess.check_call(['pip', 'install', 'rainbowstream'])
 
 
 def _install_utils():
