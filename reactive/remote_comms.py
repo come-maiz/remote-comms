@@ -87,7 +87,7 @@ def _install_utils():
 
 def _install_mosh():
     fetch.apt_install('mosh')
-    hookenv.open_port(60000, 'UDP')
+    hookenv.open_port('60000-61000', 'UDP')
 
 
 def _install_dotfiles():
